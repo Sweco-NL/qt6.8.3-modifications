@@ -46,37 +46,38 @@ include(configure.cmake)
 qt_feature_module_end(NO_MODULE)
 
 
-if(QT_FEATURE_sql_psql AND QT_FEATURE_regularexpression)
-    add_subdirectory(psql)
-endif()
-
-if(QT_FEATURE_sql_mysql)
-     add_subdirectory(mysql)
-endif()
-
-if(QT_FEATURE_sql_odbc)
-    add_subdirectory(odbc)
-endif()
-
 if(QT_FEATURE_sql_oci)
     add_subdirectory(oci)
+    add_subdirectory(ggoci)
 endif()
-
-if(QT_FEATURE_sql_db2)
-    add_subdirectory(db2)
-endif()
-
-if(QT_FEATURE_sql_sqlite)
-    add_subdirectory(sqlite)
-endif()
-
-if(QT_FEATURE_sql_ibase)
-    add_subdirectory(ibase)
-endif()
-
-if(QT_FEATURE_sql_mimer)
-    add_subdirectory(mimer)
-endif()
+# if(QT_FEATURE_sql_psql AND QT_FEATURE_regularexpression)
+#     add_subdirectory(psql)
+# endif()
+# 
+# if(QT_FEATURE_sql_mysql)
+#      add_subdirectory(mysql)
+# endif()
+# 
+# if(QT_FEATURE_sql_odbc)
+#     add_subdirectory(odbc)
+# endif()
+# 
+# 
+# if(QT_FEATURE_sql_db2)
+#     add_subdirectory(db2)
+# endif()
+# 
+# if(QT_FEATURE_sql_sqlite)
+#     add_subdirectory(sqlite)
+# endif()
+# 
+# if(QT_FEATURE_sql_ibase)
+#     add_subdirectory(ibase)
+# endif()
+# 
+# if(QT_FEATURE_sql_mimer)
+#     add_subdirectory(mimer)
+# endif()
 
 if(NOT PROJECT_NAME STREQUAL "QtBase" AND NOT PROJECT_NAME STREQUAL "Qt")
     qt_build_repo_end()
