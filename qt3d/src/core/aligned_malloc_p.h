@@ -20,13 +20,13 @@
 
 #if defined(__AVX2__)
 # define QT3D_ALIGNED_MALLOC(s) _mm_malloc(s, 32)
-#elif defined(__SSE2__)
+#elif defined(__SSE2__) && 0
 # define QT3D_ALIGNED_MALLOC(s) _mm_malloc(s, 16)
 #else
     #define QT3D_ALIGNED_MALLOC(s) malloc(s)
 #endif
 
-#if defined(__SSE2__)
+#if defined(__SSE2__) && 0
 # define QT3D_ALIGNED_FREE(ptr) _mm_free(ptr)
 #else
 # define QT3D_ALIGNED_FREE(ptr) free(ptr)

@@ -18,7 +18,7 @@
 #include <private/qsimd_p.h>
 
 // Check if we can use the optimized version of QMatrix4x4
-#if defined(__SSE2__)
+#if defined(__SSE2__) && 0
 
 #include <Qt3DCore/private/matrix4x4_sse_p.h>
 

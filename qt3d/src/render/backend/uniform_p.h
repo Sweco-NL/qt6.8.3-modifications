@@ -111,7 +111,7 @@ public:
     }
 
     // We don t want the QMatrix4x4 builder to use sizeof since QMatrix4x4 contains a type flag
-#if defined(__SSE2__)
+#if defined(__SSE2__) && 0
     UniformValue(const Matrix4x4 &mat44)
         : m_data(sizeof(Matrix4x4) / sizeof(float))
     {

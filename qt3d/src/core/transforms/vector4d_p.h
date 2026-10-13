@@ -18,7 +18,7 @@
 #include <private/qsimd_p.h>
 
 // Check if we can use the optimized version of QVector3D
-#if defined(__SSE2__)
+#if defined(__SSE2__) && 0
 
 #include <Qt3DCore/private/vector4d_sse_p.h>
 

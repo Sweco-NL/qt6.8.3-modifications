@@ -22,13 +22,13 @@
 
 #if defined(__AVX2__)
 #include "matrix4x4_avx2_p.h"
-#elif defined(__SSE2__)
+#elif defined(__SSE2__) && 0
 
 QT_BEGIN_NAMESPACE
 
 namespace Qt3DCore {
 
-class Matrix4x4_SSE
+class alignas(16) Matrix4x4_SSE
 {
 public:
 

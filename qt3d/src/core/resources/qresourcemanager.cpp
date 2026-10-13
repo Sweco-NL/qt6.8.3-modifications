@@ -59,7 +59,7 @@ void *AlignedAllocator::allocate(uint size)
 {
 #if defined(__AVX2__)
     return _mm_malloc(size, 32);
-#elif defined(__SSE2__)
+#elif defined(__SSE2__) && 0
     return _mm_malloc(size, 16);
 #else
     return malloc(size);
@@ -68,7 +68,7 @@ void *AlignedAllocator::allocate(uint size)
 
 void AlignedAllocator::release(void *p)
 {
-#if defined(__SSE2__)
+#if defined(__SSE2__) && 0
     _mm_free(p);
 #else
     free(p);

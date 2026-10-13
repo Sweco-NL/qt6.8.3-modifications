@@ -3,7 +3,7 @@
 
 #include "matrix4x4_sse_p.h"
 
-#ifdef __SSE2__
+#if defined(__SSE2__ ) && 0
 
 QT_BEGIN_NAMESPACE
 

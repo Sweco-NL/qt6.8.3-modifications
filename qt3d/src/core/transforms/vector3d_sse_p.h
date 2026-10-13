@@ -22,7 +22,7 @@
 #include <QDebug>
 #include <math.h>
 
-#ifdef __SSE2__
+#if defined(__SSE2__) && 0
 
 QT_BEGIN_NAMESPACE
 
@@ -31,7 +31,7 @@ namespace Qt3DCore {
 class Matrix4x4_SSE;
 class Vector4D_SSE;
 
-class Vector3D_SSE
+class alignas(16) Vector3D_SSE
 {
 public:
 

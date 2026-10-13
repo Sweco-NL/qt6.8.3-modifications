@@ -18,7 +18,7 @@
 #include <Qt3DCore/private/vector3d_p.h>
 #include <QtGui/qvector4d.h>
 
-#ifdef __SSE2__
+#if defined(__SSE2__) && 0
 
 QT_BEGIN_NAMESPACE
 
@@ -26,7 +26,7 @@ namespace Qt3DCore {
 
 class Matrix4x4_SSE;
 
-class Vector4D_SSE
+class alignas(16) Vector4D_SSE
 {
 public:
     Q_ALWAYS_INLINE Vector4D_SSE()

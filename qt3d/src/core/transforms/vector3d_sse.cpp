@@ -9,7 +9,7 @@
 #include "vector4d_sse_p.h"
 #include <QDebug>
 
-#ifdef __SSE2__
+#if defined(__SSE2__) && 0
 
 QT_BEGIN_NAMESPACE
 
