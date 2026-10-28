@@ -18,7 +18,18 @@ qt_find_package(Oracle PROVIDED_TARGETS Oracle::OCI MODULE_NAME sqldrivers QMAKE
 # qt_find_package(MySQL PROVIDED_TARGETS MySQL::MySQL MODULE_NAME sqldrivers QMAKE_LIB mysql)
 # qt_find_package(PostgreSQL PROVIDED_TARGETS PostgreSQL::PostgreSQL MODULE_NAME sqldrivers QMAKE_LIB psql)
 # qt_find_package(ODBC PROVIDED_TARGETS ODBC::ODBC MODULE_NAME sqldrivers QMAKE_LIB odbc)
-# qt_find_package(SQLite3 PROVIDED_TARGETS SQLite::SQLite3 MODULE_NAME sqldrivers QMAKE_LIB sqlite3)
+
+# if(TARGET SQLite::SQLite3)
+option(INTERNAL_SQL_BUILD
+    "Build SQLite through its external Visual Studio project"
+    OFF
+)
+if(INTERNAL_SQL_BUILD)
+    # Target will be populated in ggsqlite folder CMakeList.txt
+    add_library(SQLite::SQLite3 SHARED IMPORTED GLOBAL)
+else()
+    qt_find_package(SQLite3 PROVIDED_TARGETS SQLite::SQLite3 MODULE_NAME sqldrivers QMAKE_LIB sqlite3)
+endif()
 # qt_find_package(Interbase PROVIDED_TARGETS Interbase::Interbase MODULE_NAME sqldrivers QMAKE_LIB ibase) # special case
 # qt_find_package(Mimer PROVIDED_TARGETS MimerSQL::MimerSQL MODULE_NAME sqldrivers QMAKE_LIB mimer)
 # if(NOT WIN32 AND QT_FEATURE_system_zlib)
@@ -56,15 +67,15 @@ qt_feature("sql-oci" PRIVATE
 #     LABEL "PostgreSQL"
 #     CONDITION PostgreSQL_FOUND
 # )
-# qt_feature("sql-sqlite" PRIVATE
-#     LABEL "SQLite"
-#     CONDITION QT_FEATURE_datestring
-# )
-# # qt_feature("system-sqlite" PRIVATE
-#    LABEL "  Using system provided SQLite"
-#     AUTODETECT OFF
-#     CONDITION QT_FEATURE_sql_sqlite AND SQLite3_FOUND
-# )
+qt_feature("sql-sqlite" PRIVATE
+    LABEL "SQLite"
+    CONDITION QT_FEATURE_datestring
+)
+qt_feature("system-sqlite" PRIVATE
+    LABEL "  Using system provided SQLite"
+     AUTODETECT OFF
+     CONDITION QT_FEATURE_sql_sqlite AND SQLite3_FOUND
+ )
 # qt_feature("sql-mimer" PRIVATE
 #     LABEL "Mimer"
 #     CONDITION Mimer_FOUND
@@ -77,8 +88,8 @@ qt_configure_add_summary_entry(ARGS "sql-oci")
 # qt_configure_add_summary_entry(ARGS "sql-mysql")
 #qt_configure_add_summary_entry(ARGS "sql-odbc")
 #qt_configure_add_summary_entry(ARGS "sql-psql")
-#qt_configure_add_summary_entry(ARGS "sql-sqlite")
-#qt_configure_add_summary_entry(ARGS "system-sqlite")
+qt_configure_add_summary_entry(ARGS "sql-sqlite")
+qt_configure_add_summary_entry(ARGS "system-sqlite")
 #qt_configure_add_summary_entry(ARGS "sql-mimer")
 qt_configure_end_summary_section() # end of "Qt Sql Drivers" section
 qt_configure_add_report_entry(

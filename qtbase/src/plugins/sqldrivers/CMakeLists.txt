@@ -42,6 +42,11 @@ qt_feature_module_begin(
     PUBLIC_FILE "qtsqldrivers-config.h"
     PRIVATE_FILE "qtsqldrivers-config_p.h"
 )
+
+option(INTERNAL_SQL_BUILD
+    "Build SQLite through its external Visual Studio project"
+    OFF
+)
 include(configure.cmake)
 qt_feature_module_end(NO_MODULE)
 
@@ -67,9 +72,9 @@ endif()
 #     add_subdirectory(db2)
 # endif()
 # 
-# if(QT_FEATURE_sql_sqlite)
-#     add_subdirectory(sqlite)
-# endif()
+if(QT_FEATURE_sql_sqlite)
+   add_subdirectory(ggsqlite)
+endif()
 # 
 # if(QT_FEATURE_sql_ibase)
 #     add_subdirectory(ibase)
